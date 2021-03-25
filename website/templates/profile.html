@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}{{ target.nick }} {% endblock %}
+{% block asideL %}Aside Left{% endblock %}
+{% block article %}
+    <h1 align="center">Profile of {{ target.email }} </h1>
+    <ul class="profile_posts" id="profile_postss">
+        {% for post in target.posts %}
+            <li class="profile_post" id="post{{ loop.index }}">
+                {{ post.data }}  => {{ post.date|deltatime }} ago
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
+{% block asideR %}Aside Right{% endblock %}
+{% block footer %}Profil of {{ user.email }} {% endblock %}

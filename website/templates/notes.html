@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Notes{% endblock %}
+{% block asideL %}Aside Left{% endblock %}
+{% block article %}
+    <h1 align="center">Notes</h1>
+    <ul class="notes_group" id="notes">
+        {% for note in user.notes %}
+            <li class="notes_note" id="note{{ loop.index }}">
+                {{ note.data }}  => {{ note.date|deltatime }} ago
+                <button type="button" class="close" onClick="deleteNote({{ note.id }})">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </li>
+        {% endfor %}
+    </ul>
+    <form method="POST">
+        <textarea name="note" id="note" class="note_form"></textarea>
+        <div align="center">
+            <button type="submit" class="note_btn">Add note</button>
+        </div>
+    </form>
+{% endblock %}
+
+{% block asideR %}Aside Right{% endblock %}
+{% block footer %}Notes{% endblock %}

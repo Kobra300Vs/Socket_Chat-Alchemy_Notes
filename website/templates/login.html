@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block asideL %} Aside Left{% endblock %}
+{% block article %}
+    <form method="post">
+        <h3 align="center">Connect now, to be on-line agine!</h3>
+        <div class="login_group" id="login_group">
+            <label for="email">E-mail</label>
+            <input type="text" name="email" id="email" placeholder="sm1@smwhere.com"/><br>
+            <label for="pwd">Password</label>
+            <input type="password" name="pwd" id="pwd" placeholder="Enter your password"/>
+        </div>
+        <button type="submit" class="login_btn" name="login_btn">Login</button>
+    </form>
+{% endblock %}
+{% block asideR %} Aside Right{% endblock %}
+{% block footer %}Login{% endblock %}

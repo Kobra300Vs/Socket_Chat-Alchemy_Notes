@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Registration{% endblock %}
+{% block asideL %} Aside Left{% endblock %}
+{% block article %}
+<form method="post">
+    <h3 align="center">Join to our community</h3>
+    <div class="registration-group" id="registration-group">
+        <label for="email">E-mail Address</label>
+        <input type="email" name="email" id="email" placeholder="Enter your E-mail here"/><br>
+        <label for="nickname">Nickname</label>
+        <input type="text" name="nickname" id="nickname" placeholder="Enter nickname"/><br>
+        <label for="password_Fst">Password</label>
+        <input type="password" name="password_Fst" id="password_Fst" placeholder="Enter your password"/><br>
+        <label for="password_Con">Confirm Password</label>
+        <input type="password" name="password_Con" id="password_Con" placeholder="Confirm your password"/>
+    </div>
+    <button type="submit" class="reg_btn" name="reg_btn">Register now!</button>
+</form>
+{% endblock %}
+{% block asideR %} Aside Right{% endblock %}
+{% block footer %}Register{% endblock %}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="icon" href="../static/favicon.ico" type="image/x-icon">
+        <meta author='Konrad "Kobra300Vs" Wojda'/>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+        <link rel="stylesheet" href="../static/styles/style.css"/>
+
+<!--        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js" integrity="sha512-aMGMvNYu8Ue4G+fHa359jcPb1u+ytAF+P2SCb+PxrjCdO3n3ZTxJ30zuH39rimUggmTwmh2u7wvQsDTHESnmfQ==" crossorigin="anonymous"></script>
+
+        <title>{% block title %} Base {% endblock %}</title>
+    </head>
+    <body onLoad="makeSameHeightDivs(); {% block onLoadFunction %} {% endblock %}">
+<!--    sendMessage()-->
+        <nav class="navbar" id="navbar">
+            <a href="/">Main </a>
+            {% if user.is_authenticated %}
+                <a href="/notes">Notes</a>
+                <a href="/chat">Chat</a>
+                <a href="/logout" class="to_the_right">Logout</a>
+            {% else %}
+                <div class="to_the_right">
+                <a href="/login">Login</a>
+                <a href="/registration">Registration</a>
+                </div>
+            {% endif %}
+        </nav>
+
+        <section>
+            <aside class="asideL" id="asideL">
+                {% block asideL %}{% endblock %}
+            </aside>
+                <article class="article" id="article">
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                            {% for category, message in messages %}
+                                {% if category != 'succes' %}
+                                    <div class="alert_error" role="alert" id="alert">
+                                        {{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" onclick="hideAlert()">
+                                            <span aria-hidden="true" class="char">&times;</span>
+                                        </button>
+                                    </div>
+                                {% else %}
+                                    <div class="alert_succes" role="alert" id="alert">
+                                        {{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" onclick="hideAlert()">
+                                            <span aria-hidden="true" class="char">&times;</span>
+                                        </button>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                    {% block article %}{% endblock %}
+                </article>
+            <aside class="asideR" id="asideR">
+                {% block asideR %}{% endblock %}
+            </aside>
+        </section>
+
+        <footer class="footer" id="footer" >
+            {% block footer %}{% endblock %}
+            Author: <b >Konrad Wojda</b>
+        </footer>
+
+
+        <script src='..\static\scripts\index.js'></script>
+        <script src='..\static\scripts\socket.js'></script>
+    </body>
+</html>

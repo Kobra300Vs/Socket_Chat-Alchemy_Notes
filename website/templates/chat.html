@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Chat{% endblock %}
+{% block onLoadFunction %}reciver(); getEmail(){% endblock %}
+{% block asideL %}Aside Left{% endblock %}
+{% block article %}
+    <h1 align="center">Chat</h1>
+    <ul class="messages_group" id="messages">
+        {% for message in messages %}
+            <li class="{% if message.email == user.email %}to_right
+            {% else %}to_left{% endif %}" {# id="post{ loop.index } "#}>
+                {{ message.data }}
+                <span class="hover_description" id="message_data">{{ message.date }}</span>
+                <button class="profile" onClick='redirectProfile("{{ message.email }}")'>{{ message.nick }}</button>
+            </li>
+        {% endfor %}
+    </ul>
+<!--  <form method="POST">   <button type="submit">    -->
+    <div id="sender">
+        <textarea name="message" id="message" class="message_form"></textarea>
+        <div align="center">
+            <button class="message_btn" onClick="sender()">Post it</button>
+        </div>
+    </div>
+{% endblock %}
+{% block asideR %}Aside Right{% endblock %}
+{% block footer %}Chat{% endblock %}
