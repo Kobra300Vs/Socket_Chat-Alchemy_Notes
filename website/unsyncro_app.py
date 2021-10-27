@@ -36,7 +36,7 @@ def create_app():
     import datetime as dt
 
     @app.template_filter()
-    def deltatime(value):
+    def deltatime(value) -> str:
         """
         This filter is to make delta time when get saved time and "now" time
         and show it at client side.
@@ -68,7 +68,7 @@ def create_app():
         return output
 
     @login_manager.user_loader
-    def load_user(user_id):
+    def load_user(user_id: int) -> str:
         """
         With Login Manager get ID of current user(client) logged
         :param user_id: info about current user

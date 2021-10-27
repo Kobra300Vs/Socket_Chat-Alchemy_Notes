@@ -6,9 +6,10 @@ import json
 
 auth = Blueprint('auth', __name__)
 
+
 @auth.route('/logout')
 @login_required
-def logout():
+def logout() -> redirect:
     """ONLY when logged... This function logout current user and redirect to /login"""
     logout_user()
     return redirect(url_for('unauth.login'))
@@ -16,7 +17,7 @@ def logout():
 
 @auth.route('/notes', methods=['GET', 'POST'])
 @login_required
-def notes():
+def notes() -> render_template():
     """
     ONLY when logged
     Allow adding notes to DB and show them at /notes
@@ -35,22 +36,24 @@ def notes():
             flash('There is no note to save.', category='note_len_short')
     return render_template("notes.html", user=current_user)
 
+
 @auth.route('/delete-note', methods=['POST'])
 @login_required
-def delete_note():
+def delete_note() -> json:
     """ONLY when logged... This function is to remove note from DB when someone click X button"""
     note = json.loads(request.data)
-    noteId = note['noteId']
-    note = Note.query.get(noteId)
+    note_id = note['noteId']
+    note = Note.query.get(note_id)
     if note:
         if note.id_user == current_user.id:
             db.session.delete(note)
             db.session.commit()
             return jsonify({})
 
+
 @auth.route('/chat', methods=['GET', 'POST'])
 @login_required
-def chat():
+def chat() -> render_template:
     """
     ONLY when logged
     This page NOT need to be refreshed!
@@ -74,9 +77,10 @@ def chat():
                                         ' WHERE User.id = Message.id_user')
     return render_template("chat.html", user=current_user, messages=show_all_posts)
 
+
 @auth.route('/profile/<target_email>', methods=['GET', 'POST'])
 @login_required
-def profile(target_email):
+def profile(target_email: str) -> render_template:
     """
     ONLY when logged
     Show target user (by email) page. There are its all

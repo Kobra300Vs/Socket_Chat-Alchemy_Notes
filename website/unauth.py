@@ -7,8 +7,9 @@ import re
 
 unauth = Blueprint('unauth', __name__)
 
+
 @unauth.route('/login', methods=['GET', 'POST'])
-def login():
+def login() -> render_template:
     """
     Login NOT requied!
     When user click "Login" button, get his data with POST
@@ -34,7 +35,7 @@ def login():
 
 
 @unauth.route('/registration', methods=['GET', 'POST'])
-def register():
+def register() -> render_template:
     """
     Login NOT requied!
     When user click "Register now!" button, get his data with POST

@@ -4,6 +4,7 @@ from flask_login import current_user
 from .db_app import db
 from .models import Message
 
+
 def return_server():
     """
     Passing Flask app to SocketIO Server to run it when called in main.py
@@ -17,13 +18,13 @@ def return_server():
     socketio = SocketIO(app)
 
     @socketio.on('ask_email')
-    def send_email():
+    def send_email() -> None:
         """Sending email of client to itself back."""
         print(current_user.email)
         emit('get_email',  current_user.email)
 
     @socketio.on('client_send_msg')
-    def handle_message(msg):
+    def handle_message(msg: str) -> None:
         """
         When gets message from client, add it to DB and then share it to everyone
         who is connected as a client, to make no refresh needed website /chat

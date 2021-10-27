@@ -4,7 +4,8 @@ from os import path
 db = SQLAlchemy()
 DB_NAME = "database.db"
 
-def create_database(app):
+
+def create_database(app) -> None:
     """
     Creating data base if not exists.
     :param app: Flask app
@@ -14,7 +15,8 @@ def create_database(app):
         db.create_all(app=app)
         print("Created dabatase!")
 
-def init_app(app):
+
+def init_app(app) -> None:
     """
     Running SQLAlchemy DB server
     :param app: Flask app that use DB

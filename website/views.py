@@ -3,8 +3,9 @@ from flask_login import current_user
 
 views = Blueprint('views', __name__)
 
+
 @views.route('/')
-def home():
+def home() -> render_template:
     """
     Sending to client root/ main/ welcome page, as U call it.
     :return: main.html for current user even when not logged in

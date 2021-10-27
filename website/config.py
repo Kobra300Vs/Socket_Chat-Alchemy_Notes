@@ -7,6 +7,7 @@ env_path = Path('.') / '.env'
 load_dotenv(dotenv_path=env_path)
 print(load_dotenv())
 
+
 class Config:
     """Set Flask configuration vars from .env file."""
 
