@@ -17,7 +17,7 @@ def logout() -> redirect:
 
 @auth.route('/notes', methods=['GET', 'POST'])
 @login_required
-def notes() -> render_template():
+def notes() -> render_template:
     """
     ONLY when logged
     Allow adding notes to DB and show them at /notes
